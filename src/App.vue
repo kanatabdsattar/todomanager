@@ -1,13 +1,11 @@
 <template>
   <div>
-    <h1>lajdlaskdjslkdja</h1>
+    <HomePage />
   </div>
 </template>
 
 <script setup lang="ts">
-
+import HomePage from './views/HomePage.vue'
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
