@@ -1,13 +1,22 @@
 <template>
-  <div>
-    <h1>lajdlaskdjslkdja</h1>
+  <div class="app">
+    <side-bar/>
+    <router-view></router-view>
   </div>
 </template>
 
 <script setup lang="ts">
-
+import SideBar from "./components/SideBar.vue";
+import Home from './components/Home.vue';
 </script>
 
 <style scoped>
-
-</style>
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+.app{
+  display: flex;
+}
+</style>   
