@@ -1,14 +1,12 @@
-
 :root {
-  --vt-c-white: #EEEEF6;
+  --vt-c-white: #eeeef6;
 
   --vt-c-black: #181818;
 
   --color-dark-blue: #172755;
-  --color-red: #EF2A82;
-  --color-blue: #0088F0;
+  --color-red: #ef2a82;
+  --color-blue: #0088f0;
 }
-
 
 /* @media (prefers-color-scheme: dark) {
   :root {
@@ -34,4 +32,5 @@
 }
 
 body {
+  font-family: (--font-family); 
 }
