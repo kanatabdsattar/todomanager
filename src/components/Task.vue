@@ -30,7 +30,6 @@ const isFavourite = ref(false)
   flex-direction: row;
   align-items: start;
   background-color: rgb(54, 54, 54);
-  max-width: 1280px;
   border-radius: 0.5rem;
   padding: 0.8rem 0.8rem;
   height: 4.5rem;
