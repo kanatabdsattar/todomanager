@@ -28,7 +28,7 @@ const addTask = () => {
   background-color: rgba(54, 54, 54, 0.8);
   color: white;
   width: 100%;
-  max-width: 1280px;
+  /* max-width: 1280px; */
 }
 
 ::placeholder {
