@@ -71,8 +71,8 @@ const isFavourite = ref(false)
 }
 
 .round input[type='checkbox']:checked + label {
-  background-color: #66bb6a;
-  border-color: #66bb6a;
+  background-color: #066d0b;
+  border-color: #066d0b;
 }
 
 .round input[type='checkbox']:checked + label:after {
