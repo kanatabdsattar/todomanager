@@ -1,13 +1,16 @@
 <template>
     <aside :style="{width: SideBarWidth}">
         <div class="logo">
-            <h3>ToDo</h3>
+            <h4>ToDo</h4>
         </div>
         <div class="menu-toggle-wrap">
-            <button class="menu-toggle" @click="ToggleMenu">
-                <i class="pi pi-angle-double-right" style="color: white;"></i>
+            <button class="menu-toggle" @click="ToggleMenu" :class="{'rotate-180': is_expanded}">
+                <i class="pi pi-angle-double-right" style="color: white;"/>
             </button>
         </div>
+
+
+
     </aside>
 </template>
 <script setup lang="ts">
@@ -55,16 +58,22 @@ aside {
     display: flex;
     padding: 0.5rem;
 	transition: 0.2s ease-in-out;
-    background: var(  --color-blue);
+    background: var(--color-dark-blue);
     border: none;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     z-index: 1000;
     border-radius: 50%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 .pi .pi-angle-double-right:hover{
     transform: translateX(0.5rem);
+}
+
+.rotate-180{
+    transform: rotate(180deg);
+    transition: 0.2s linear;
 }
 
 </style>
