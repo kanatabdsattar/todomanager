@@ -1,7 +1,7 @@
 <template>
     <aside :style="{width: SideBarWidth}">
         <div class="logo">
-            <h4>ToDo</h4>
+            <h3>ToDo</h3>
         </div>
         <div class="menu-toggle-wrap">
             <button class="menu-toggle" @click="ToggleMenu">
@@ -27,7 +27,7 @@ const ToggleMenu = () => {
 <style lang="scss" scoped>
 aside {
     position: relative;
-    width: calc(2rem + 32px);
+    width: calc(2rem + 34px);
     display: flex;
     height: 100vh;
 	flex-direction: column;
@@ -52,9 +52,10 @@ aside {
     padding-top:0.5rem;
 }
 .menu-toggle {
+    display: flex;
     padding: 0.5rem;
 	transition: 0.2s ease-in-out;
-    background: var(--color-dark-blue);
+    background: var(  --color-blue);
     border: none;
     align-items: center;
     justify-content: center;
