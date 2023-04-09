@@ -26,29 +26,41 @@ const ToggleMenu = () => {
 
 <style lang="scss" scoped>
 aside {
+    position: relative;
     width: calc(2rem + 32px);
     display: flex;
+    height: 100vh;
 	flex-direction: column;
 	background-color: var(--color-dark-blue);
 	color: white;
-	overflow: hidden;
 	min-height: 100vh;
 	padding: 1rem;
 	transition: 0.2s ease-in-out;
     margin: 0;
+    z-index: 1000;
 }
 .menu-toggle-wrap {
+    position: absolute;
 	display: flex;
 	justify-content: flex-end;
 	margin-bottom: 1rem;
 	top: 0;
 	transition: 0.2s ease-in-out;
+    right: 0;
+    transform: translateX(50%);
+    z-index: 1000;
+    padding-top:0.5rem;
 }
 .menu-toggle {
+    padding: 0.5rem;
 	transition: 0.2s ease-in-out;
-    background: transparent;
+    background: var(--color-dark-blue);
     border: none;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
+    z-index: 1000;
+    border-radius: 50%;
 }
 .pi .pi-angle-double-right:hover{
     transform: translateX(0.5rem);

@@ -30,8 +30,11 @@ currentDate.value = date.toLocaleDateString('en-US', {
 .container {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   min-height: 100vh;
   padding: 1rem 3rem;
+  z-index: 1;
+  width: 100%;
 }
 .main-field {
   font-size: x-large;
@@ -41,14 +44,11 @@ currentDate.value = date.toLocaleDateString('en-US', {
 .tasks {
   display: flex;
   flex-direction: column;
-  height: 100%;
 }
 
 .input-text-block {
-  position: absolute; /* Position the container absolutely */
-  bottom: 0; /* Position it at the bottom */
+  /* position: absolute;  */
   left: 0; /* Align it to the left */
   width: 100%; /* Set the width to fill the container */
-  padding: 1rem 3rem;
 }
 </style>
