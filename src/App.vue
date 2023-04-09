@@ -1,13 +1,12 @@
 <template>
-  <side-bar/>
-  <div>
-    <HomePage />
+  <div class="app">
+    <side-bar/>
+    <router-view></router-view>
   </div>
 </template>
 
 <script setup lang="ts">
 import SideBar from "./components/SideBar.vue";
-import HomePage from './views/HomePage.vue'
 </script>
 
 <style scoped>

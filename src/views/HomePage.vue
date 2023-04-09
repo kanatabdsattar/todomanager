@@ -31,6 +31,7 @@ console.log(currentDate.value)
   position: relative;
   min-height: 100vh;
   padding: 1rem 3rem;
+  z-index: 1;
 }
 .main-field {
   font-size: x-large;
@@ -40,14 +41,13 @@ console.log(currentDate.value)
 .tasks {
   display: flex;
   flex-direction: column;
-  height: 100%;
 }
 
 .input-text-block {
   position: absolute; /* Position the container absolutely */
-  bottom: 0; /* Position it at the bottom */
+  bottom: 20px; /* Position it at the bottom */
   left: 0; /* Align it to the left */
   width: 100%; /* Set the width to fill the container */
-  padding: 1rem 3rem;
+  padding: 1rem 3rem 0 3rem;
 }
 </style>
