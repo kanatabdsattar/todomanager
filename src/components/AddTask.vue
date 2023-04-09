@@ -1,7 +1,7 @@
 <template>
   <div>
     <span class="p-input-icon-left input-task">
-      <i class="pi pi-plus" @click="addTask" style="cursor: pointer" />
+      <i class="pi pi-plus" @click="addTask" />
       <InputText v-model="taskVakue" placeholder="Add task" class="input-text__text" />
     </span>
   </div>
@@ -13,7 +13,9 @@ import { ref } from 'vue'
 
 const taskVakue = ref('')
 
-const addTask = () => {}
+const addTask = () => {
+  console.log('Pressen + sign')
+}
 </script>
 
 <style scoped>
@@ -27,5 +29,9 @@ const addTask = () => {}
   color: white;
   width: 100%;
   max-width: 1280px;
+}
+
+::placeholder {
+  color: white;
 }
 </style>

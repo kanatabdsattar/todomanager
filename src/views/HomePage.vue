@@ -1,8 +1,10 @@
 <template>
   <div class="container">
-    <div class="main-field">{{ currentDate }}</div>
-    <div class="tasks">
-      <Task />
+    <div>
+      <div class="main-field">{{ currentDate }}</div>
+      <div class="tasks">
+        <Task />
+      </div>
     </div>
     <AddTask class="input-text-block" />
   </div>
@@ -22,16 +24,17 @@ currentDate.value = date.toLocaleDateString('en-US', {
   month: 'long',
   day: 'numeric'
 })
-
-console.log(currentDate.value)
 </script>
 
 <style scoped>
 .container {
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   min-height: 100vh;
   padding: 1rem 3rem;
   z-index: 1;
+  width: 100%;
 }
 .main-field {
   font-size: x-large;
@@ -44,10 +47,8 @@ console.log(currentDate.value)
 }
 
 .input-text-block {
-  position: absolute; /* Position the container absolutely */
-  bottom: 20px; /* Position it at the bottom */
+  /* position: absolute;  */
   left: 0; /* Align it to the left */
   width: 100%; /* Set the width to fill the container */
-  padding: 1rem 3rem 0 3rem;
 }
 </style>

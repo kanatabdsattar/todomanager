@@ -37,6 +37,10 @@ const isFavourite = ref(false)
   position: relative;
 }
 
+.round {
+  z-index: 1;
+}
+
 .round label {
   background-color: rgb(54, 54, 54);
   border: 1px solid #ccc;
