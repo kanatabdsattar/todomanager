@@ -1,8 +1,10 @@
 <template>
   <div class="container">
-    <div class="main-field">{{ currentDate }}</div>
-    <div class="tasks">
-      <Task />
+    <div>
+      <div class="main-field">{{ currentDate }}</div>
+      <div class="tasks">
+        <Task />
+      </div>
     </div>
     <AddTask class="input-text-block" />
   </div>
@@ -22,13 +24,12 @@ currentDate.value = date.toLocaleDateString('en-US', {
   month: 'long',
   day: 'numeric'
 })
-
-console.log(currentDate.value)
 </script>
 
 <style scoped>
 .container {
-  position: relative;
+  display: flex;
+  flex-direction: column;
   min-height: 100vh;
   padding: 1rem 3rem;
 }
