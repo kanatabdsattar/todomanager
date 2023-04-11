@@ -1,30 +1,35 @@
 <template>
     <aside :style="{width: SideBarWidth}">
         <div class="logo">
-            <h4>ToDo</h4>
+            <h3>ToDo</h3>
         </div>
         <div class="menu-toggle-wrap">
-            <button class="menu-toggle" @click="ToggleMenu" :class="{'rotate-180': is_expanded}">
+            <button class="menu-toggle" @click="toggleMenu" :class="{'rotate-180': isExpanded}">
                 <i class="pi pi-angle-double-right" style="color: white;"/>
             </button>
         </div>
-
-
-
+        <div class="links">
+            <SideBarLink to = "/main" icon = "pi pi-home">Home</SideBarLink>
+            <SideBarLink to = "/main" icon = "pi pi-home">Home</SideBarLink>
+            <SideBarLink to = "/main" icon = "pi pi-home">Home</SideBarLink>
+            <SideBarLink to = "/main" icon = "pi pi-home">Home</SideBarLink>
+        </div>
+    
     </aside>
 </template>
 <script setup lang="ts">
 import {ref, computed} from 'vue';
+import { useSidebarStore } from "./state";
+import SideBarLink from "./SideBarLink.vue";
 
-const is_expanded = ref(true);
-const sidebar_width = 300;
-const sidebar_width_collapsed = 80;
-const SideBarWidth = computed(() =>
-    `${is_expanded.value ? sidebar_width : sidebar_width_collapsed}px`);
-const ToggleMenu = () => {    
-    is_expanded.value = !is_expanded.value;
 
+const store = useSidebarStore();
+const SideBarWidth = computed(() => store.SideBarWidth);
+const isExpanded = computed(() => store.is_expanded);
+const toggleMenu = () => {
+    store.ToggleMenu();
 }
+
 </script>
 
 <style lang="scss" scoped>
@@ -52,7 +57,10 @@ aside {
     right: 0;
     transform: translateX(50%);
     z-index: 1000;
-    padding-top:0.5rem;
+    padding-top:1rem;
+}
+.logo{
+    margin-top:0.5rem;
 }
 .menu-toggle {
     display: flex;
@@ -74,6 +82,9 @@ aside {
 .rotate-180{
     transform: rotate(180deg);
     transition: 0.2s linear;
+}
+.links{
+    margin-top: 20px;
 }
 
 </style>
