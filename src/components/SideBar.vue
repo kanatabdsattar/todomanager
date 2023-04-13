@@ -9,10 +9,10 @@
             </button>
         </div>
         <div class="links">
-            <SideBarLink to = "/main" icon = "pi pi-home">Home</SideBarLink>
-            <SideBarLink to = "/main" icon = "pi pi-home">Home</SideBarLink>
-            <SideBarLink to = "/main" icon = "pi pi-home">Home</SideBarLink>
-            <SideBarLink to = "/main" icon = "pi pi-home">Home</SideBarLink>
+            <SideBarLink to = "/main" icon = "pi pi-sun">My day</SideBarLink>
+            <SideBarLink to = "/main" icon = "pi pi-star">Important</SideBarLink>
+            <SideBarLink to = "/main" icon = "pi pi-home">Tasks</SideBarLink>
+            <SideBarLink to = "/main" icon = "pi pi-plus-circle">Add task</SideBarLink>
         </div>
     
     </aside>
@@ -85,6 +85,9 @@ aside {
 }
 .links{
     margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
 }
 
 </style>
