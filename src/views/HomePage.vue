@@ -2,11 +2,11 @@
   <div class="container">
     <div>
       <div class="main-field">{{ currentDate }}</div>
-      <div class="tasks">
-        <Task />
+      <div class="tasks" v-for="todo in todos">
+        <Task v-bind:name="todo.title" v-bind:discription="todo.content" />
       </div>
     </div>
-    <AddTask class="input-text-block" />
+    <AddTask @add="addTodo" class="input-text-block" />
   </div>
 </template>
 
@@ -34,9 +34,6 @@ interface Todo {
 }
 
 const todos = ref<Todo[]>([])
-const name = ref('')
-const input_content = ref('')
-const deadlineTime = ref('')
 
 const todos_asc = computed(() =>
   todos.value.sort((a, b) => {
@@ -44,23 +41,22 @@ const todos_asc = computed(() =>
   })
 )
 
-const addTodo = () => {
-  if (input_content.value.trim() === '' || name.value.trim() === '') {
+const addTodo = (todoFromAddTask: Todo) => {
+  if (todoFromAddTask.content.trim() === '' || todoFromAddTask.title.trim() === '') {
     return
   }
 
+  console.log('Added new todo!')
+
   let newTodo: Todo = {
-    title: name.value,
-    content: input_content.value,
-    done: false,
-    important: false,
-    deadlineAt: new Date(deadlineTime.value)
+    title: todoFromAddTask.title,
+    content: todoFromAddTask.content,
+    done: todoFromAddTask.done,
+    important: todoFromAddTask.important,
+    deadlineAt: new Date(todoFromAddTask.deadlineAt)
   }
 
   todos.value.push(newTodo)
-  input_content.value = ''
-  name.value = ''
-  deadlineTime.value = ''
 }
 
 const removeTodo = (todo: Todo) => {
@@ -76,10 +72,6 @@ watch(
     deep: true
   }
 )
-
-watch(name, (newVal) => {
-  localStorage.setItem('name', newVal)
-})
 
 const savedTodos = ref(localStorage.getItem('todos'))
 

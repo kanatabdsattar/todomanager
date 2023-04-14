@@ -5,7 +5,7 @@
       <label for="checkbox"></label>
     </div>
     <div class="project-info">
-      <p class="project-info__name">Project</p>
+      <p class="project-info__name">{{ name }}</p>
       <p class="project-info__discription">Project Info</p>
     </div>
     <div class="favourite">
@@ -21,6 +21,8 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
+const props = defineProps(['name', 'discription', 'favourite', 'done'])
+
 const isFavourite = ref(false)
 </script>
 
@@ -34,6 +36,7 @@ const isFavourite = ref(false)
   padding: 0.8rem 0.8rem;
   height: 4.5rem;
   position: relative;
+  margin-bottom: 0.75rem;
 }
 
 .round {
