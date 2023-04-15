@@ -1,8 +1,13 @@
 <template>
   <div>
     <span class="p-input-icon-left input-task">
-      <i class="pi pi-plus" @click="addTask" />
-      <InputText v-model="taskVakue" placeholder="Add task" class="input-text__text" />
+      <i class="pi pi-plus" aria-disabled="false" @click="addTask" />
+      <InputText
+        v-model="taskValue"
+        placeholder="Add task"
+        class="input-text__text"
+        @keyup.enter="addTaskByEnter()"
+      />
     </span>
   </div>
 </template>
@@ -11,7 +16,35 @@
 import InputText from 'primevue/inputtext'
 import { ref } from 'vue'
 
-const taskVakue = ref('')
+const emit = defineEmits(['add'])
+
+const taskValue = ref('')
+
+interface Todo {
+  title: string
+  content: string
+  done: boolean
+  important: boolean
+  deadlineAt: Date
+}
+
+const addTaskByEnter = () => {
+  if (taskValue.value === '' || taskValue.value.trim() === '') {
+    return
+  }
+
+  let newTodo: Todo = {
+    title: taskValue.value,
+    content: 'Play Guitar',
+    done: false,
+    important: false,
+    deadlineAt: new Date('2002-02-02')
+  }
+
+  console.log('emitted text')
+  emit('add', newTodo)
+  taskValue.value = ''
+}
 
 const addTask = () => {
   console.log('Pressen + sign')
@@ -33,5 +66,9 @@ const addTask = () => {
 
 ::placeholder {
   color: white;
+}
+
+.add-button {
+  cursor: pointer;
 }
 </style>
