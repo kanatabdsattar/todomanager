@@ -44,7 +44,7 @@ const isActive = computed(() => route.path === props.to);
   cursor: pointer;
   position: relative;
   font-weight: 400;
-  font-size: 20px;
+  font-size: 16px;
   user-select: none;
   margin: 0.1em 0;
   padding: 0.4em;
