@@ -2,7 +2,7 @@
     <router-link :to = "to" class = "link" :class="{active: isActive}">
         <i class="icon" :class="icon" style="font-size: 1.2rem"/>
         <transition name="fade">
-            <span v-if="isExpanded">
+            <span v-if="isExpanded" class="link__text">
                 <slot/>
             </span>
         </transition>
@@ -30,28 +30,23 @@ const isActive = computed(() => route.path === props.to);
 </script>
 
 <style scoped>
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.1s;
-}
-.fade-enter,
-.fade-leave-to {
-  opacity: 0;
-}
 .link {
   display: flex;
+  flex-direction: row;
   align-items: center;
   cursor: pointer;
   position: relative;
   font-weight: 400;
   font-size: 16px;
-  user-select: none;
   margin: 0.1em 0;
   padding: 0.4em;
   border-radius: 0.25em;
   height: 1.5em;
   color: white;
   text-decoration: none;
+}
+.link__text{
+  white-space: nowrap;
 }
 .link:hover {
   background-color: var(--sidebar-item-hover);
