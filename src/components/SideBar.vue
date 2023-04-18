@@ -34,11 +34,10 @@ aside {
   position: relative;
   width: calc(2rem + 34px);
   display: flex;
-  height: 100vh;
+  height: 100vmax;
   flex-direction: column;
   background-color: var(--color-dark-blue);
   color: white;
-  min-height: 100vh;
   padding: 1rem;
   transition: 0.2s ease-in-out;
   margin: 0;
