@@ -2,8 +2,8 @@
   <div class="container">
     <div>
       <div class="main-field">{{ currentDate }}</div>
-      <div class="tasks" v-for="todo in todos">
-        <Task v-bind:name="todo.title" v-bind:discription="todo.content" />
+      <div class="tasks" v-for="todo in todos" :key="todo.id">
+        <Task :name="todo.title" :discription="todo.content" :done="todo.done" />
       </div>
     </div>
     <AddTask @add="addTodo" class="input-text-block" />
@@ -16,6 +16,7 @@ import AddTask from '@/components/AddTask.vue'
 import { ref, onMounted, computed, watch } from 'vue'
 
 const date = new Date()
+const currentId = ref()
 
 const currentDate = ref()
 
@@ -26,6 +27,7 @@ currentDate.value = date.toLocaleDateString('en-US', {
 })
 
 interface Todo {
+  id: number
   title: string
   content: string
   done: boolean
@@ -49,6 +51,7 @@ const addTodo = (todoFromAddTask: Todo) => {
   console.log('Added new todo!')
 
   let newTodo: Todo = {
+    id: currentId.value,
     title: todoFromAddTask.title,
     content: todoFromAddTask.content,
     done: todoFromAddTask.done,
@@ -56,12 +59,17 @@ const addTodo = (todoFromAddTask: Todo) => {
     deadlineAt: new Date(todoFromAddTask.deadlineAt)
   }
 
+  currentId.value++
   todos.value.push(newTodo)
 }
 
 const removeTodo = (todo: Todo) => {
   todos.value = todos.value.filter((t) => t !== todo)
 }
+
+watch(currentId, (newVal) => {
+  localStorage.setItem('currentId', JSON.stringify(newVal))
+})
 
 watch(
   todos,
@@ -76,6 +84,8 @@ watch(
 const savedTodos = ref(localStorage.getItem('todos'))
 
 onMounted(() => {
+  currentId.value = parseInt(JSON.parse(localStorage.getItem('currentId') || '1'))
+
   if (savedTodos.value != null) {
     todos.value = JSON.parse(savedTodos.value)
   } else {
