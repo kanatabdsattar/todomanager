@@ -112,8 +112,9 @@ onMounted(() => {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  justify-content: flex-end;
   min-height: 100vh;
-  padding: 1rem 3rem 0 3rem;
+  padding: 0 3rem;
   z-index: 1;
   width: 100%;
 }
