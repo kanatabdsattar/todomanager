@@ -3,11 +3,12 @@
     <div>
       <div class="main-field">{{ currentDate }}</div>
       <div class="tasks" v-for="todo in todos" :key="todo.id">
-        <Task :name="todo.title" :discription="todo.content" :done="todo.done" />
+        <Task :name="todo.title" :discription="todo.content" :done="todo.done" :id="todo.id" />
       </div>
     </div>
     <AddTask @add="addTodo" class="input-text-block" />
   </div>
+  <Button @click="removeAllTodo"></Button>
 </template>
 
 <script setup lang="ts">
@@ -65,6 +66,10 @@ const addTodo = (todoFromAddTask: Todo) => {
 
 const removeTodo = (todo: Todo) => {
   todos.value = todos.value.filter((t) => t !== todo)
+}
+
+const removeAllTodo = () => {
+  todos.value.length = 0
 }
 
 watch(currentId, (newVal) => {

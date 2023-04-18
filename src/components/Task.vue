@@ -1,14 +1,8 @@
 <template>
   <div class="task-background">
     <div class="round">
-      <input
-        type="checkbox"
-        v-model="checkbox"
-        @click="checkbox = !checkbox"
-        checked
-        id="checkbox"
-      />
-      <label></label>
+      <input type="checkbox" checked v-model="checkbox" :id="checkboxId" />
+      <label :for="checkboxId"></label>
     </div>
     <div class="project-info">
       <p class="project-info__name">{{ name }}</p>
@@ -27,10 +21,11 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
-const props = defineProps(['name', 'discription', 'favourite', 'done'])
+const props = defineProps(['name', 'discription', 'favourite', 'done', 'id'])
 
 const isFavourite = ref(false)
 const checkbox = ref(props.done)
+const checkboxId = ref(props.id)
 </script>
 
 <style scoped>
@@ -76,7 +71,7 @@ const checkbox = ref(props.done)
   width: 12px;
 }
 
-/* .round input[type='checkbox'] {
+.round input[type='checkbox'] {
   visibility: hidden;
 }
 
@@ -87,7 +82,7 @@ const checkbox = ref(props.done)
 
 .round input[type='checkbox']:checked + label:after {
   opacity: 1;
-} */
+}
 
 .project-info {
   padding-left: 1.5rem;
