@@ -9,8 +9,10 @@
       </div>
     </div>
     <AddTask @add="addTodo" class="input-text-block" />
+    <Sidebar v-model:visible="visibleRight" position="right">
+      <h2></h2>
+    </Sidebar>
   </div>
-  <Button @click="removeAllTodo"></Button>
 </template>
 
 <script setup lang="ts">
@@ -22,6 +24,7 @@ const date = new Date()
 const currentId = ref()
 
 const currentDate = ref()
+const visibleRight = ref(false)
 
 currentDate.value = date.toLocaleDateString('en-US', {
   weekday: 'long',
@@ -46,10 +49,12 @@ const todos_asc = computed(() =>
   })
 )
 
-const addTodo = (todoFromAddTask: Todo) => {
-  if (todoFromAddTask.content.trim() === '' || todoFromAddTask.title.trim() === '') {
+const addTodo = (taskName: string) => {
+  if (taskName.trim() === '') {
     return
   }
+
+  visibleRight.value = true
 
   console.log('Added new todo!')
 

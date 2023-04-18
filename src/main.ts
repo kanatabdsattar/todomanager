@@ -4,6 +4,7 @@ import PrimeVue from 'primevue/config'
 import InputText from 'primevue/inputtext'
 import Checkbox from 'primevue/checkbox'
 import Button from 'primevue/button'
+import Sidebar from 'primevue/sidebar'
 
 //theme
 import 'primevue/resources/themes/lara-light-indigo/theme.css'
@@ -24,6 +25,7 @@ const app = createApp(App)
 app.component('InputText', InputText)
 app.component('Checkbox', Checkbox)
 app.component('Button', Button)
+app.component('Sidebar', Sidebar)
 
 app.use(createPinia())
 app.use(router)
