@@ -2,8 +2,10 @@
   <div class="container">
     <div>
       <div class="main-field">{{ currentDate }}</div>
-      <div class="tasks" v-for="todo in todos" :key="todo.id">
-        <Task :name="todo.title" :discription="todo.content" :done="todo.done" :id="todo.id" />
+      <div class="tasks-container">
+        <div class="tasks" v-for="todo in todos" :key="todo.id">
+          <Task :name="todo.title" :discription="todo.content" :done="todo.done" :id="todo.id" />
+        </div>
       </div>
     </div>
     <AddTask @add="addTodo" class="input-text-block" />
@@ -113,6 +115,15 @@ onMounted(() => {
 .main-field {
   font-size: x-large;
   margin-bottom: 2rem;
+}
+
+.tasks-container {
+  height: 80vh;
+  overflow-y: auto;
+}
+
+.tasks-container::-webkit-scrollbar {
+  display: none;
 }
 
 .tasks {
