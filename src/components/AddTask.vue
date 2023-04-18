@@ -33,16 +33,8 @@ const addTaskByEnter = () => {
     return
   }
 
-  let newTodo: Todo = {
-    title: taskValue.value,
-    content: 'Play Guitar',
-    done: false,
-    important: false,
-    deadlineAt: new Date('2002-02-02')
-  }
-
   console.log('emitted text')
-  emit('add', newTodo)
+  emit('add', taskValue.value)
   taskValue.value = ''
 }
 

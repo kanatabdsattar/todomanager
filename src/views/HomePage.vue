@@ -9,8 +9,24 @@
       </div>
     </div>
     <AddTask @add="addTodo" class="input-text-block" />
-    <Sidebar v-model:visible="visibleRight" position="right">
-      <h2></h2>
+    <Sidebar
+      v-model:visible="visibleRight"
+      position="right"
+      class="right-sidebar"
+      style="background-color: var(--color-background-sidebar); color: white"
+    >
+      <input type="text" v-model="todoTitle" class="title" />
+      <p class="p-float-label">
+        <Textarea
+          id="value"
+          v-model="todoContent"
+          :class="{ 'p-invalid': errorMessage }"
+          rows="4"
+          cols="30"
+          aria-describedby="text-error"
+        />
+        <label for="value">Description</label>
+      </p>
     </Sidebar>
   </div>
 </template>
@@ -22,6 +38,11 @@ import { ref, onMounted, computed, watch } from 'vue'
 
 const date = new Date()
 const currentId = ref()
+const todoTitle = ref('')
+const todoContent = ref('')
+const todoDone = ref(false)
+const todoImportant = ref(false)
+const todoDeadline = ref()
 
 const currentDate = ref()
 const visibleRight = ref(false)
@@ -58,13 +79,15 @@ const addTodo = (taskName: string) => {
 
   console.log('Added new todo!')
 
+  todoTitle.value = taskName
+
   let newTodo: Todo = {
     id: currentId.value,
-    title: todoFromAddTask.title,
-    content: todoFromAddTask.content,
-    done: todoFromAddTask.done,
-    important: todoFromAddTask.important,
-    deadlineAt: new Date(todoFromAddTask.deadlineAt)
+    title: todoTitle.value,
+    content: todoContent.value,
+    done: todoDone.value,
+    important: todoImportant.value,
+    deadlineAt: new Date(todoDeadline.value)
   }
 
   currentId.value++
@@ -141,5 +164,17 @@ onMounted(() => {
   margin-bottom: 1rem;
   left: 0; /* Align it to the left */
   width: 100%; /* Set the width to fill the container */
+}
+
+.right-sidebar .title {
+  background-color: var(--color-background-sidebar);
+  border: none;
+  outline: none;
+  box-shadow: none;
+  border-bottom: 1px solid gray;
+  color: white;
+  padding: 1rem;
+  font-size: large;
+  margin-bottom: 1rem;
 }
 </style>
