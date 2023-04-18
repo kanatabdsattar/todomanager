@@ -6,6 +6,8 @@
   --color-dark-blue: #172755;
   --color-red: #ef2a82;
   --color-blue: #0088f0;
+
+  --color-background-sidebar: #282424;
 }
 
 /* @media (prefers-color-scheme: dark) {
@@ -32,5 +34,5 @@
 }
 
 body {
-  font-family: (--font-family); 
+  font-family: (--font-family);
 }
