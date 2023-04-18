@@ -91,7 +91,7 @@ onMounted(() => {
   flex-direction: column;
   justify-content: space-between;
   min-height: 100vh;
-  padding: 1rem 3rem;
+  padding: 1rem 3rem 0 3rem;
   z-index: 1;
   width: 100%;
 }
@@ -107,6 +107,7 @@ onMounted(() => {
 
 .input-text-block {
   /* position: absolute;  */
+  margin-bottom: 1rem;
   left: 0; /* Align it to the left */
   width: 100%; /* Set the width to fill the container */
 }
