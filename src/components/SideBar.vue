@@ -34,7 +34,7 @@ aside {
   position: relative;
   width: calc(2rem + 34px);
   display: flex;
-  height: 100vh;
+  height: 100vmax;
   flex-direction: column;
   background-color: var(--color-dark-blue);
   color: white;
