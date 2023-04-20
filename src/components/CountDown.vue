@@ -30,7 +30,7 @@ const d = Math.floor(distance / (1000 * 60 * 60 * 24));
 days.value = d
 
 onMounted(() => {
-  dd.value.style.strokeDashoffset = 440 - (440 * d) / 365
+  dd.value.style.strokeDashoffset = 440 - (440 * d) / 365;
 })
 </script>
 
