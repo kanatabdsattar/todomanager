@@ -76,11 +76,6 @@ interface Todo {
 
 const todos = ref<Todo[]>([])
 
-// const todos_asc = computed(() =>
-//   todos.value.sort((a, b) => {
-//     return b.deadlineAt.getTime() - a.deadlineAt.getTime()
-//   })
-// )
 
 const addTodo = (taskName: string) => {
   if (taskName.trim() === '') {
