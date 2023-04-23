@@ -4,30 +4,42 @@
       <div class="main-field">{{ currentDate }}</div>
       <div class="tasks-container">
         <div class="tasks" v-for="todo in todos" :key="todo.id">
-          <Task :name="todo.title" :discription="todo.content" :done="todo.done" :id="todo.id" />
+          <Task :name="todo.title" :discription="todo.content" :done="todo.done" :id="todo.id" :favourite="todo.important"/>
         </div>
       </div>
     </div>
     <AddTask @add="addTodo" class="input-text-block" />
-    <Sidebar
-      v-model:visible="visibleRight"
-      position="right"
-      class="right-sidebar"
-      style="background-color: var(--color-background-sidebar); color: white"
-    >
-      <input type="text" v-model="todoTitle" class="title" />
-      <p class="p-float-label">
-        <Textarea
-          id="value"
-          v-model="todoContent"
-          :class="{ 'p-invalid': errorMessage }"
-          rows="4"
-          cols="30"
-          aria-describedby="text-error"
-        />
-        <label for="value">Description</label>
-      </p>
-    </Sidebar>
+      <Sidebar
+        v-model:visible="visibleRight"
+        position="right"
+        class="right-sidebar"
+        style="
+        background-color: var(--color-background-sidebar); 
+        color: white; 
+        border-radius: 0.5rem;
+        width: 30%;
+        height: 95%;
+        margin-right: 1rem;"
+      >
+        <div class="title">
+
+        </div>
+        <input type="text" v-model="todoTitle" class="title-text" />
+        <p class="p-float-label">
+          <Textarea
+            id="value"
+            v-model="todoContent"
+            rows="2"
+            cols="43"
+            aria-describedby="text-error"
+            style="background-color: var(--color-background-sidebar);
+            border: none;
+            outline: none;
+            border-bottom: 1px solid gray;"
+          />
+          <label for="value">Description</label>
+        </p>
+      </Sidebar> 
   </div>
 </template>
 
@@ -41,7 +53,7 @@ const currentId = ref()
 const todoTitle = ref('')
 const todoContent = ref('')
 const todoDone = ref(false)
-const todoImportant = ref(false)
+const todoFavourite = ref(false)
 const todoDeadline = ref()
 
 const currentDate = ref()
@@ -58,12 +70,11 @@ interface Todo {
   title: string
   content: string
   done: boolean
-  important: boolean
+  favourite: boolean
   deadlineAt: Date
 }
 
 const todos = ref<Todo[]>([])
-
 
 
 const addTodo = (taskName: string) => {
@@ -82,7 +93,7 @@ const addTodo = (taskName: string) => {
     title: todoTitle.value,
     content: todoContent.value,
     done: todoDone.value,
-    important: todoImportant.value,
+    favourite: todoFavourite.value,
     deadlineAt: new Date(todoDeadline.value)
   }
 
@@ -164,14 +175,18 @@ onMounted(() => {
 }
 
 .right-sidebar .title {
+
+}
+
+.right-sidebar .title-text {
   background-color: var(--color-background-sidebar);
   border: none;
   outline: none;
   box-shadow: none;
-  border-bottom: 1px solid gray;
   color: white;
   padding: 1rem;
   font-size: large;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
 }
+
 </style>
