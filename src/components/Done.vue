@@ -1,10 +1,15 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 
 const props = defineProps(['done', 'id'])
+const emit = defineEmits(['done'])
 
 const checkbox = ref(props.done)
 const checkboxId = ref(props.id)
+
+watch(checkbox, () => {
+  emit('done')
+})
 </script>
 
 <template>
