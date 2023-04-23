@@ -1,5 +1,4 @@
 <template>
-  <div class="app">
     <div id="time">
       <div class="circle">
         <div class="dots" :ref="day_dot"></div>
@@ -11,7 +10,6 @@
       </div>
       <h3>{{ name }}</h3>
     </div>
-  </div>
 </template>
 
 <script setup lang="ts">
@@ -44,22 +42,13 @@ onMounted(() => {
 </script>
 
 <style scoped>
-.app {
-  width: 100%;
-  height: 100%;
-  align-items: center;
-  gap: 1rem;
-  display: flex;
-  flex-direction: column;
-}
 #time {
   background-color: white;
   border-radius: 6px;
   text-align: center;
   display: flex;
   flex-direction: column;
-  padding: 10px;
-  margin-top: 10px;
+  padding: 1%;
 }
 
 #time .circle {
@@ -77,8 +66,8 @@ onMounted(() => {
   transform: rotate(270deg);
 }
 #time .circle svg circle {
-  width: 80%;
-  height: 80%;
+  width: 100%;
+  height: 100%;
   fill: transparent;
   stroke-width: 8;
   stroke: #282828;

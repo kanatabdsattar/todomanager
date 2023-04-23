@@ -4,48 +4,60 @@
       <div class="main-field">{{ currentDate }}</div>
       <div class="tasks-container">
         <div class="tasks" v-for="todo in todos" :key="todo.id">
-          <Task :name="todo.title" :discription="todo.content" :done="todo.done" :id="todo.id" :favourite="todo.important"/>
+          <Task
+            :name="todo.title"
+            :discription="todo.content"
+            :done="todo.done"
+            :id="todo.id"
+            :favourite="todo.important"
+          />
         </div>
       </div>
     </div>
     <AddTask @add="addTodo" class="input-text-block" />
-      <Sidebar
-        v-model:visible="visibleRight"
-        position="right"
-        class="right-sidebar"
-        style="
-        background-color: var(--color-background-sidebar); 
-        color: white; 
+    <Sidebar
+      v-model:visible="visibleRight"
+      position="right"
+      class="right-sidebar"
+      style="
+        background-color: var(--color-background-sidebar);
+        color: white;
         border-radius: 0.5rem;
         width: 30%;
         height: 95%;
-        margin-right: 1rem;"
-      >
-        <div class="title">
-
-        </div>
-        <input type="text" v-model="todoTitle" class="title-text" />
-        <p class="p-float-label">
-          <Textarea
-            id="value"
-            v-model="todoContent"
-            rows="2"
-            cols="43"
-            aria-describedby="text-error"
-            style="background-color: var(--color-background-sidebar);
+        margin-right: 1rem;
+      "
+    >
+      <div class="title"></div>
+      <input type="text" v-model="todoTitle" class="title-text" />
+      <p class="p-float-label">
+        <Textarea
+          id="value"
+          v-model="todoContent"
+          rows="2"
+          cols="43"
+          aria-describedby="text-error"
+          style="
+            background-color: var(--color-background-sidebar);
             border: none;
             outline: none;
-            border-bottom: 1px solid gray;"
-          />
-          <label for="value">Description</label>
-        </p>
-      </Sidebar> 
+            border-bottom: 1px solid gray;
+          "
+        />
+        <label for="value">Description</label>
+      </p>
+      <span class="p-float-label date">
+        <Calendar v-model="deadline" inputId="birth_date" />
+        <label for="birth_date">Deadline</label>
+      </span>
+    </Sidebar>
   </div>
 </template>
 
 <script setup lang="ts">
 import Task from '@/components/Task.vue'
 import AddTask from '@/components/AddTask.vue'
+import Calendar from 'primevue/calendar'
 import { ref, onMounted, computed, watch } from 'vue'
 
 const date = new Date()
@@ -75,7 +87,6 @@ interface Todo {
 }
 
 const todos = ref<Todo[]>([])
-
 
 const addTodo = (taskName: string) => {
   if (taskName.trim() === '') {
@@ -135,6 +146,8 @@ onMounted(() => {
   }
   // name.value = localStorage.getItem('name')
 })
+
+const deadline = ref();
 </script>
 
 <style scoped>
@@ -147,6 +160,9 @@ onMounted(() => {
   padding: 0 3rem;
   z-index: 1;
   width: 100%;
+}
+.date{
+  margin-top: 2rem;
 }
 .main-field {
   font-size: x-large;
@@ -175,7 +191,6 @@ onMounted(() => {
 }
 
 .right-sidebar .title {
-
 }
 
 .right-sidebar .title-text {
@@ -188,5 +203,4 @@ onMounted(() => {
   font-size: large;
   margin-bottom: 2rem;
 }
-
 </style>
