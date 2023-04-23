@@ -1,12 +1,12 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <div class="task-background">
-    <Done :done="props.done" :id="props.id"/>
+    <Done :done="props.done" :id="props.id" @done="emit('done', id)"/>
     <div class="project-info">
-      <p class="project-info__name">{{ name }}</p>
+      <p class="project-info__name" @click="emit('right-sidebar', id)">{{ name }}</p>
       <p class="project-info__discription">Project Info</p>
     </div>
-    <Star :favourite="props.favourite"/>
+    <Star :favourite="props.favourite" @done-favourite="emit('star', id)" />
   </div>
 </template>
 
@@ -16,7 +16,7 @@ import Done from './Done.vue'
 import { ref } from 'vue'
 
 const props = defineProps(['name', 'discription','favourite', 'done', 'id'])
-
+const emit = defineEmits(['star', 'done', 'right-sidebar'])
 
 </script>
 
@@ -40,6 +40,7 @@ const props = defineProps(['name', 'discription','favourite', 'done', 'id'])
 }
 
 .project-info__name {
+  cursor: pointer;
   margin-bottom: 0.5rem;
 }
 .project-info__discription {
