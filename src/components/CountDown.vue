@@ -9,16 +9,25 @@
         </svg>
         <div id="days">{{ days }}</div>
       </div>
-      <h3>Project</h3>
+      <h3>{{ name }}</h3>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, onMounted } from 'vue';
+const props = defineProps({
+    name: {
+      type: String,
+      required: true
+    },
+});
 const days = ref(0)
 const dd = ref()
 const day_dot = ref()
+
+console.log("Hello I am here", props.name)
+
 
 const endDate = '09/01/2023 00:00:00'
 
@@ -37,6 +46,7 @@ onMounted(() => {
 <style scoped>
 .app {
   width: 100%;
+  height: 100%;
   align-items: center;
   gap: 1rem;
   display: flex;

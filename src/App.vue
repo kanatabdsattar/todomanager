@@ -17,5 +17,6 @@ import SideBar from "./components/SideBar.vue";
 }
 .app{
   display: flex;
+  gap: 2rem;
 }
 </style>   
