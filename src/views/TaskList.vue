@@ -1,8 +1,9 @@
 <template>
   <div class="app">
-    <div class="tasks">
-      <div v-for="todo in todos" :key="todo.id">
-        <count-down :name="todo.title" />
+    <h1>Tasks</h1>
+    <div class="tasks-list">
+      <div v-for="todo in todos" :key="todo.id" class="task">
+        <count-down :name="todo.title"/>
       </div>
     </div>
   </div>
@@ -39,17 +40,23 @@ onMounted(() => {
 </script>
 
 <style scoped>
-.app {
-  width: 100%;
+.app{
   display: flex;
+  flex-direction: column;
 }
-.tasks {
-  display: flex;
+h1{
+  margin-top: 1rem;
+}
+.tasks-list {
+  display: grid;
+  grid-template-columns: auto auto auto auto auto auto auto;
+  grid-template-rows: min-content;
   gap: 1rem;
   flex-wrap: wrap;
-  height: 90%;
-  overflow-y: auto;
+}
 
+.task {
+  height: auto;
 }
 .tasks::-webkit-scrollbar {
   display: none;
