@@ -39,16 +39,20 @@ const emit = defineEmits(['star', 'done', 'right-sidebar'])
 }
 
 .project-info {
-  padding-left: 1.5rem;
+  margin-left: 1.5rem;
   color: white;
   padding-top: 0.2rem;
+  display: flex;
+  flex-direction: column;
 }
 
 .project-info__name {
   margin-bottom: 0.5rem;
+  align-self: flex-start;
 }
 .project-info__discription {
   font-size: small;
+  align-self: flex-start;
 }
 
 

@@ -189,7 +189,7 @@ const deadline = ref();
   flex-direction: column;
   justify-content: flex-start;
   min-height: 100vh;
-  padding: 5rem 3rem;
+  padding: 4% 3rem;
   z-index: 1;
   width: 100%;
 }

@@ -137,7 +137,7 @@ const addTodo = (taskName: string) => {
 
   let newTodo: Todo = {
     id: currentId.value,
-    title: todoTitle.value,
+    title: todoTitle.value.trim(),
     content: "",
     done: false,
     favourite: false,
@@ -192,7 +192,7 @@ const deadline = ref();
   flex-direction: column;
   justify-content: flex-end;
   min-height: 100vh;
-  padding: 0 3rem;
+  padding: 1% 3rem;
   z-index: 1;
   width: 100%;
 }
