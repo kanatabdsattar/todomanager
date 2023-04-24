@@ -54,12 +54,6 @@
             <Calendar v-model="todoDeadline" :showIcon="true" />
           </span>
         </p>
-      
-      <div class="sidebar-btn" >
-          <Button label="Done" severity="success" raised @click="todoDone = !todoDone"/>
-          <Button label="Favourite" severity="help" raised @click="todoFavourite = !todoFavourite"/>        
-      </div>
-      <Button label="Save" @click="editTodo"/>
     </Sidebar>
   </div>
 </template>
