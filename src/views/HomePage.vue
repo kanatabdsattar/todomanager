@@ -51,8 +51,8 @@
       </p>
       <span class="p-float-label date">
         <Calendar v-model="deadline" inputId="birth_date" />
-        <label for="birth_date">Deadline</label>
-
+        <label for="date" class="deadline">Deadline</label>
+        <Button label="Submit" @click="getData"/>
       </span>
     </Sidebar>
   </div>
@@ -186,6 +186,9 @@ onMounted(() => {
 })
 
 const deadline = ref();
+const getData = () => {
+  console.log(deadline.value.toLocaleDateString());
+}
 </script>
 
 <style scoped>
@@ -198,7 +201,14 @@ const deadline = ref();
   z-index: 1;
   width: 100%;
 }
+.deadline{
+  margin-left: 1rem;
+}
 .date{
+  width: 100%;
+  justify-content: center;
+  display: flex;
+  gap: 1rem;
   margin-top: 2rem;
 }
 .main-field {
