@@ -73,6 +73,7 @@ const todoDeadline = ref()
 
 const currentDate = ref()
 const visibleRight = ref(false)
+const editingId = ref()
 
 currentDate.value = date.toLocaleDateString('en-US', {
   weekday: 'long',
@@ -146,6 +147,19 @@ const addTodo = (taskName: string) => {
 
   currentId.value++
   todos.value.push(newTodo)
+}
+
+const editTodo = () => {
+  for (let todo of todos.value){
+    if (todo.id === editingId.value){
+      visibleRight.value = !visibleRight.value;
+      todoTitle.value = todo.title;
+      todoContent.value = todo.content;
+      todoDeadline.value = todo.deadlineAt;
+      todoFavourite.value = todo.favourite;
+      todoDone.value = todo.done;
+    }
+  }
 }
 
 const removeTodo = (todo: Todo) => {
