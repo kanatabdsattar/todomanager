@@ -52,6 +52,7 @@
       <span class="p-float-label date">
         <Calendar v-model="deadline" inputId="birth_date" />
         <label for="birth_date">Deadline</label>
+
       </span>
     </Sidebar>
   </div>
@@ -61,6 +62,7 @@
 import Task from '@/components/Task.vue'
 import AddTask from '@/components/AddTask.vue'
 import Calendar from 'primevue/calendar'
+import Button from 'primevue/button';
 import { ref, onMounted, computed, watch } from 'vue'
 
 const date = new Date()
