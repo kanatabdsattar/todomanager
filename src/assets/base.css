@@ -7,7 +7,8 @@
   --color-red: #ef2a82;
   --color-blue: #0088f0;
 
-  --color-background-sidebar: #282424;
+  --color-background-sidebar: #031C30;
+  --color-secondary-sidebar: #485967;
 }
 
 /* @media (prefers-color-scheme: dark) {
