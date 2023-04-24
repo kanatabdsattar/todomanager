@@ -13,31 +13,32 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
-const props = defineProps({
-    name: {
-      type: String,
-      required: true
-    },
-});
+import { ref, onMounted, toRef } from 'vue';
+const props = defineProps(['name','deadline']);
 const days = ref(0)
 const dd = ref()
 const day_dot = ref()
 
-console.log("Hello I am here", props.name)
+interface Todo {
+  id: number
+  title: string
+  content: string
+  done: boolean
+  favourite: boolean
+  deadlineAt: Date
+}
+const todos = ref<Todo[]>([])
 
 
-const endDate = '09/01/2023 00:00:00'
-
-const now = new Date(endDate).getTime()
+const endDate = new Date(props.deadline);
 const countDown = new Date().getTime()
-const distance = Number(now) - Number(countDown)
+const distance = endDate.getTime() - countDown;
+ 
+days.value = Math.floor(distance / (1000 * 60 * 60 * 24));
 
-const d = Math.floor(distance / (1000 * 60 * 60 * 24));
-days.value = d
-
+days.value = days.value +1;
 onMounted(() => {
-  dd.value.style.strokeDashoffset = 440 - (440 * d) / 365;
+  dd.value.style.strokeDashoffset = 440 - (440 * days.value) / 365;
 })
 </script>
 
