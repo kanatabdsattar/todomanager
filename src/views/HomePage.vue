@@ -53,8 +53,9 @@
         />
       </p>
       <span class="p-float-label date">
-        <Calendar v-model="deadline" inputId="birth_date" />
-        <label for="birth_date">Deadline</label>
+        <Calendar v-model="todoDeadline" inputId="data" />
+        <label for="data" class="deadline">Deadline</label>
+        <Button label="Submit" @click="getData"/>
       </span>
     </Sidebar>
   </div>
@@ -77,7 +78,6 @@ const todoDeadline = ref()
 
 const currentDate = ref()
 const visibleRight = ref(false)
-const editingId = ref()
 
 currentDate.value = date.toLocaleDateString('en-US', {
   weekday: 'long',
@@ -131,6 +131,7 @@ const rightSidebarEffect = (id: number) => {
     }
   }
 }
+
 
 const addTodo = (taskName: string) => {
   if (taskName.trim() === '') {
@@ -200,6 +201,7 @@ watch(
 
 const savedTodos = ref(localStorage.getItem('todos'))
 
+
 onMounted(() => {
   currentId.value = parseInt(JSON.parse(localStorage.getItem('currentId') || '1'))
 
@@ -211,9 +213,16 @@ onMounted(() => {
   // name.value = localStorage.getItem('name')
 })
 
-const deadline = ref();
-const getData = () => {
-  console.log(deadline.value.toLocaleDateString());
+
+const getData = (id:number) => {
+  for (let todo of todos.value){
+    if (todo.id === editingId.value){
+      // todo.deadlineAt = todoDeadline.value.toLocaleDateString();
+      todo.deadlineAt = new Date(todoDeadline.value);
+      localStorage.setItem('todos', JSON.stringify(todos));
+    }
+  }
+  todoDeadline.value = ''; 
 }
 </script>
 
@@ -223,11 +232,17 @@ const getData = () => {
   flex-direction: column;
   justify-content: flex-end;
   min-height: 100vh;
-  padding: 1% 3rem;
+  padding: 0 3rem;
   z-index: 1;
   width: 100%;
 }
+.deadline{
+  margin-left: 1rem;
+}
 .date{
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
   margin-top: 2rem;
 }
 .main-field {
