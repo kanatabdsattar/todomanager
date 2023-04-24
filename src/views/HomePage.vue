@@ -11,6 +11,7 @@
           :done="todo.done" 
           :id="todo.id" 
           :favourite="todo.favourite" 
+          :deadline="todo.deadlineAt"
           @star="starredTask" 
           @done="doneTask"
           @right-sidebar="rightSidebarEffect"/>
@@ -50,7 +51,6 @@
             color: white;
           "
         />
-        <label for="value">Description</label>
       </p>
       <span class="p-float-label date">
         <Calendar v-model="deadline" inputId="birth_date" />
@@ -147,7 +147,7 @@ const addTodo = (taskName: string) => {
     content: "",
     done: false,
     favourite: false,
-    deadlineAt: new Date()
+    deadlineAt: date
   }
 
   currentId.value++
