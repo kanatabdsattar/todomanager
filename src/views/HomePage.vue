@@ -81,6 +81,7 @@ const editingId = ref()
 
 const currentDate = ref()
 const visibleRight = ref(false)
+const editingId = ref()
 
 currentDate.value = date.toLocaleDateString('en-US', {
   weekday: 'long',
@@ -158,6 +159,7 @@ const addTodo = (taskName: string) => {
 }
 
 const editTodo = () => {
+
   console.log('Edit new todo!')
 
   let newTodo: Todo = {
@@ -173,6 +175,7 @@ const editTodo = () => {
     if (todo.id === editingId.value){
       todo = newTodo;
       localStorage.setItem('currentId', JSON.stringify(todos))
+
     }
   }
 }
