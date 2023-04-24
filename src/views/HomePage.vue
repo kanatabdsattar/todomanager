@@ -49,11 +49,13 @@
             border-bottom: 1px solid gray;
             color: white;
           "
-          />
-          <span class="p-float-label">
-            <Calendar v-model="todoDeadline" :showIcon="true" />
-          </span>
-        </p>
+        />
+        <label for="value">Description</label>
+      </p>
+      <span class="p-float-label date">
+        <Calendar v-model="deadline" inputId="birth_date" />
+        <label for="birth_date">Deadline</label>
+      </span>
     </Sidebar>
   </div>
 </template>
@@ -62,6 +64,7 @@
 import Task from '@/components/Task.vue'
 import AddTask from '@/components/AddTask.vue'
 import Calendar from 'primevue/calendar'
+import Button from 'primevue/button';
 import { ref, onMounted, computed, watch } from 'vue'
 
 const date = new Date()
@@ -209,6 +212,9 @@ onMounted(() => {
 })
 
 const deadline = ref();
+const getData = () => {
+  console.log(deadline.value.toLocaleDateString());
+}
 </script>
 
 <style scoped>
@@ -220,6 +226,9 @@ const deadline = ref();
   padding: 1% 3rem;
   z-index: 1;
   width: 100%;
+}
+.date{
+  margin-top: 2rem;
 }
 .main-field {
   font-size: x-large;
