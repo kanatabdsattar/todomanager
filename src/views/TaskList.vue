@@ -48,11 +48,17 @@ h1{
   margin-top: 1rem;
 }
 .tasks-list {
+  margin: 0 auto;
   display: grid;
   grid-template-columns: auto auto auto auto auto auto auto;
   grid-template-rows: min-content;
   gap: 1rem;
   flex-wrap: wrap;
+}
+@media only screen and (max-width: 900px){
+  .tasks-list{
+   grid-template-columns: 1fr 1fr;
+  } 
 }
 
 .task {
