@@ -71,7 +71,6 @@ const todoContent = ref('')
 const todoDone = ref(false)
 const todoFavourite = ref(false)
 const todoDeadline = ref()
-const editingId = ref()
 
 const currentDate = ref()
 const visibleRight = ref(false)
