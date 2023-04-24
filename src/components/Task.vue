@@ -1,13 +1,13 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
-  <div class="task-background">
+  <button class="task-background" @click="emit('right-sidebar', id)">
     <Done :done="props.done" :id="props.id" @done="emit('done', id)"/>
     <div class="project-info">
-      <p class="project-info__name" @click="emit('right-sidebar', id)">{{ name }}</p>
+      <p class="project-info__name" >{{ name }}</p>
       <p class="project-info__discription">Project Info</p>
     </div>
-    <Star :favourite="props.favourite" @done-favourite="emit('star', id)" />
-  </div>
+    <Star :favourite="props.favourite" @done-favourite="emit('star', id)" @click.stop/>
+  </button>
 </template>
 
 <script setup lang="ts">
@@ -30,7 +30,12 @@ const emit = defineEmits(['star', 'done', 'right-sidebar'])
   padding: 0.8rem 0.8rem;
   height: 4.5rem;
   position: relative;
+  cursor: pointer;
   margin-bottom: 0.75rem;
+}
+
+.task-background::hover {
+
 }
 
 .project-info {
@@ -40,7 +45,6 @@ const emit = defineEmits(['star', 'done', 'right-sidebar'])
 }
 
 .project-info__name {
-  cursor: pointer;
   margin-bottom: 0.5rem;
 }
 .project-info__discription {
