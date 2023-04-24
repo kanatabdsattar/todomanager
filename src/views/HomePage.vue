@@ -190,7 +190,6 @@ const deadline = ref();
 .container {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   justify-content: flex-end;
   min-height: 100vh;
   padding: 0 3rem;
