@@ -3,7 +3,7 @@
     <h1>Tasks</h1>
     <div class="tasks-list">
       <div v-for="todo in todos" :key="todo.id" class="task">
-        <count-down :name="todo.title"/>
+        <count-down :name="todo.title" :deadline="todo.deadlineAt"/>
       </div>
     </div>
   </div>
@@ -35,7 +35,6 @@ onMounted(() => {
     todos.value = []
   }
 
-  console.log(todos)
 })
 </script>
 
