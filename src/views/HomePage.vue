@@ -31,28 +31,35 @@
         margin-right: 1rem;"
       >
         <div class="title">
-          <input type="text" v-model="todoTitle" class="title-text" />
+          <slot name="header"><input type="text" v-model="todoTitle" class="title-text" /></slot>
+          
         </div>
         
-        <p class="p-float-label">
+        <p class="p-float-label data">
           <Textarea
-            id="value"
             v-model="todoContent"
-            rows="2"
+            rows="1"
             cols="43"
+            autoResize
             aria-describedby="text-error"
+            placeholder=" Project Info"
             style="background-color: var(--color-background-sidebar);
             border: none;
             outline: none;
             border-bottom: 1px solid gray;
+            color: white;
           "
-        />
-        <label for="value">Description</label>
-      </p>
-      <span class="p-float-label date">
-        <Calendar v-model="deadline" inputId="birth_date" />
-        <label for="birth_date">Deadline</label>
-      </span>
+          />
+          <span class="p-float-label">
+            <Calendar v-model="todoDeadline" :showIcon="true" />
+          </span>
+        </p>
+      
+      <div class="sidebar-btn" >
+          <Button label="Done" severity="success" raised @click="todoDone = !todoDone"/>
+          <Button label="Favourite" severity="help" raised @click="todoFavourite = !todoFavourite"/>        
+      </div>
+      <Button label="Save" @click="editTodo"/>
     </Sidebar>
   </div>
 </template>
@@ -70,6 +77,7 @@ const todoContent = ref('')
 const todoDone = ref(false)
 const todoFavourite = ref(false)
 const todoDeadline = ref()
+const editingId = ref()
 
 const currentDate = ref()
 const visibleRight = ref(false)
@@ -122,6 +130,7 @@ const rightSidebarEffect = (id: number) => {
       todoDeadline.value = todo.deadlineAt;
       todoFavourite.value = todo.favourite;
       todoDone.value = todo.done;
+      editingId.value = id;
     }
   }
 }
@@ -133,7 +142,7 @@ const addTodo = (taskName: string) => {
 
   console.log('Added new todo!')
 
-  todoTitle.value = taskName
+  todoTitle.value = taskName.trim()
 
   let newTodo: Todo = {
     id: currentId.value,
@@ -146,6 +155,26 @@ const addTodo = (taskName: string) => {
 
   currentId.value++
   todos.value.push(newTodo)
+}
+
+const editTodo = () => {
+  console.log('Edit new todo!')
+
+  let newTodo: Todo = {
+    id: editingId.value,
+    title: todoTitle.value,
+    content: todoContent.value,
+    done: todoDone.value,
+    favourite: todoFavourite.value,
+    deadlineAt: todoDeadline.value
+  }
+
+  for (let todo of todos.value){
+    if (todo.id === editingId.value){
+      todo = newTodo;
+      localStorage.setItem('currentId', JSON.stringify(todos))
+    }
+  }
 }
 
 const removeTodo = (todo: Todo) => {
@@ -192,12 +221,9 @@ const deadline = ref();
   flex-direction: column;
   justify-content: flex-end;
   min-height: 100vh;
-  padding: 0 3rem;
+  padding: 1% 3rem;
   z-index: 1;
   width: 100%;
-}
-.date{
-  margin-top: 2rem;
 }
 .main-field {
   font-size: x-large;
@@ -217,6 +243,13 @@ const deadline = ref();
   display: flex;
   flex-direction: column;
 }
+.data {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 10%;
+  gap: 1rem;
+}
 
 .input-text-block {
   /* position: absolute;  */
@@ -226,25 +259,32 @@ const deadline = ref();
 }
 
 .right-sidebar .title {
-
   background-color: var(--color-background-sidebar);
-  border: none;
   outline: none;
   box-shadow: none;
   color: white;
-  padding: 1rem;
   font-size: large;
-  margin-bottom: 1rem;
 }
 
 .right-sidebar .title-text {
-  background-color: var(--color-background-sidebar);
+  background-color: var(--color-secondary-sidebar);
   border: none;
   outline: none;
   box-shadow: none;
   color: white;
   padding: 1rem;
-  font-size: large;
+  font-size: 32px;
   margin-bottom: 2rem;
+  padding-left: 1rem;
+  max-width: 100%;
+  border-radius: 0.5rem;
+  box-shadow: 1px;
+}
+.sidebar-btn{
+  display: flex;
+  justify-content: space-between;
+  align-self: end;
+  padding: 0 2rem;
+  margin-bottom: 10rem;
 }
 </style>
