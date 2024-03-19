@@ -3,7 +3,8 @@
     <h1>Tasks</h1>
     <div class="tasks-list">
       <div v-for="todo in todos" :key="todo.id" class="task">
-        <count-down :name="todo.title" :deadline="todo.deadlineAt"/>
+        <count-down :name="todo.title" :id="todo.id"/>
+        <button @click="deleteTask(todo.id)" class="btn">Delete</button>
       </div>
     </div>
   </div>
@@ -35,35 +36,56 @@ onMounted(() => {
     todos.value = []
   }
 
-})
+});
+
+const deleteTask = (id: number) => {
+  todos.value = todos.value.filter((todo) => todo.id !== id);
+  localStorage.setItem('todos', JSON.stringify(todos.value));
+};
 </script>
 
 <style scoped>
-.app{
+.app {
+  height: 100vh;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
 }
-h1{
+.btn{
+  background: red;
+  border:none;
+  color: white;
+  font-weight: bold;
+  border-radius: 10px;
+  margin-top: 10px;
+  padding: 8px 10px;
+}
+h1 {
   margin-top: 1rem;
 }
+
 .tasks-list {
   margin: 0 auto;
+  padding-right: 20px;
   display: grid;
-  grid-template-columns: auto auto auto auto auto auto auto;
+  width: 90vw;
+  grid-template-columns: repeat(1, 1fr);
   grid-template-rows: min-content;
   gap: 1rem;
-  flex-wrap: wrap;
+  max-height: 550px;
+  overflow-y: auto; 
 }
-@media only screen and (max-width: 900px){
-  .tasks-list{
-   grid-template-columns: 1fr 1fr;
-  } 
+
+@media only screen and (max-width: 900px) {
+  .tasks-list {
+    width: 70vw;
+
+  }
 }
 
 .task {
   height: auto;
-}
-.tasks::-webkit-scrollbar {
-  display: none;
+  display: flex;
+  flex-direction: column;
 }
 </style>

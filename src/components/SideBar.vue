@@ -12,7 +12,6 @@
       <SideBarLink to="/" icon="pi pi-sun">My day</SideBarLink>
       <SideBarLink to="/favourite" icon="pi pi-star">Important</SideBarLink>
       <SideBarLink to="/tasks" icon="pi pi-home">Tasks</SideBarLink>
-      <SideBarLink to="/addTask" icon="pi pi-plus-circle">Add task</SideBarLink>
     </div>
   </aside>
 </template>

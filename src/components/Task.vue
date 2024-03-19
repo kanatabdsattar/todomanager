@@ -6,7 +6,6 @@
       <p class="project-info__name" >{{ name }}</p>
       <p class="project-info__discription">{{ discription }}</p>
     </div>
-    <p class="project-info__deadline">Time left to end task is: {{ timeLeft }}</p>
     <Star :favourite="props.favourite" @done-favourite="emit('star', id)" @click.stop/>
   </button>
 </template>

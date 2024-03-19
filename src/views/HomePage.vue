@@ -28,7 +28,7 @@
         color: white; 
         border-radius: 0.5rem;
         width: 30%;
-        height: 95%;
+        height: 90%;
         margin-right: 1rem;"
       >
         <div class="title">
@@ -52,11 +52,6 @@
           "
         />
       </p>
-      <span class="p-float-label date">
-        <Calendar v-model="todoDeadline" inputId="data" />
-        <label for="data" class="deadline">Deadline</label>
-        <Button label="Submit" @click="getData"/>
-      </span>
     </Sidebar>
   </div>
 </template>
@@ -228,11 +223,14 @@ const getData = (id:number) => {
 
 <style scoped>
 .container {
+  height: 100vh;
+  margin-right: 20px;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   min-height: 100vh;
-  padding: 0 3rem;
+  padding-top: 3rem;
   z-index: 1;
   width: 100%;
 }
